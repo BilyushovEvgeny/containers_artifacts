@@ -1,5 +1,5 @@
 az login
-az aks create --resource-group teamResources --name OHAKS --node-count 1 --enable-addons monitoring --generate-ssh-keys --attach-acr registrympx1704
+az aks create --zonez 1 2 3 --resource-group teamResources --name OHAKS --node-count 3 --enable-addons monitoring --generate-ssh-keys --attach-acr registrympx1704
 az aks get-credentials --resource-group teamResources --name OHAKS
 
 az aks get-credentials --name ohaks --resource-group teamresources --admin

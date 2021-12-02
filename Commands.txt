@@ -1,3 +1,42 @@
+#challenge one
+
+docker network create testing
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Qq123456" -p 1433:1433 --name sql1 --network testing -d mcr.microsoft.com/mssql/server:2017-latest
+
+docker exec -it sql1 "bash"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "Qq123456"
+CREATE DATABASE mydrivingDB
+GO
+
+docker login registrympx1704.azurecr.io
+docker run --network testing -e SQLFQDN=sql1 -e SQLUSER=sa -e SQLPASS=Qq123456 -e SQLDB=mydrivingDB registrympx1704.azurecr.io/dataload:1.0
+
+#Use Dockervile_3
+docker pull https://github.com/BilyushovEvgeny/containers_artifacts.git
+docker build -f Dockerfile -t "tripinsights/poi:1.0" .
+
+# To rum
+docker run -d -p 80:80 -e "SQL_USER=sa" -e "SQL_PASSWORD=Qq123456" -e "SQL_SERVER=sql1" -e "SQL_DBNAME=mydrivingDB" -e "ASPNETCORE_ENVIRONMENT=Local" --network testing tripinsights/poi:1.0
+
+curl http://localhost:8080/api/poi/healthcheck
+
+docker tag tripinsights/poi:1.0 registrympx1704.azurecr.io/poi:1.0
+docker push registrympx1704.azurecr.io/poi:1.0
+
+docker tag tripinsights/tripviewer:1.0 registrympx1704.azurecr.io/tripviewer:1.0
+docker push registrympx1704.azurecr.io/tripviewer:1.0
+
+docker tag tripinsights/userprofile:1.0 registrympx1704.azurecr.io/userprofile:1.0
+docker push registrympx1704.azurecr.io/userprofile:1.0
+
+docker tag tripinsights/user-java:1.0 registrympx1704.azurecr.io/user-java:1.0
+docker push registrympx1704.azurecr.io/user-java:1.0
+
+docker tag tripinsights/trips:1.0 registrympx1704.azurecr.io/trips:1.0
+docker push registrympx1704.azurecr.io/trips:1.0
+
+#challenge two
 az login
 az aks create --zonez 1 2 3 --resource-group teamResources --name OHAKS --node-count 3 --enable-addons monitoring --generate-ssh-keys --attach-acr registrympx1704
 az aks get-credentials --resource-group teamResources --name OHAKS

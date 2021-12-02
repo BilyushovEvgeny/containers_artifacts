@@ -24,9 +24,22 @@ spec:
         env:
           - name: ASPNETCORE_ENVIRONMENT
             value: "Production"
-        envFrom:
-          - secretRef:
-              name: env-secrets
+          - name: SQL_DBNAME
+            valueFrom:
+              secretKeyRef:
+                name: SQLDBNAME
+                key: "SQL_DBNAME"
+        volumeMounts:
+          - name: secrets-store01-inline
+            mountPath: "/mnt/secrets-store"
+            readOnly: true          
+      volumes:
+        - name: secrets-store01-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azure-kvname-user-msi"
 ---
 apiVersion: v1
 kind: Service

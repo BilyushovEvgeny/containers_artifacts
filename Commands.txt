@@ -1,0 +1,30 @@
+az login
+az aks create --resource-group teamResources --name OHAKS --node-count 1 --enable-addons monitoring --generate-ssh-keys --attach-acr registrympx1704
+az aks get-credentials --resource-group teamResources --name OHAKS
+
+az aks get-credentials --name ohaks --resource-group teamresources --admin
+
+#Create deployment
+kubectl apply -f secret.yaml
+
+kubectl apply -f poi-deployments.yaml
+kubectl apply -f poi-deployments.yaml
+kubectl apply -f poi-deployments.yaml
+kubectl apply -f poi-deployments.yaml
+kubectl apply -f poi-deployments.yaml
+kubectl get po
+kubect get svc
+kubectl get svc
+kubectl port-forward poi-deployment-676c87b946-jf5sp 8080:80
+kubectl log poi-deployment-676c87b946-jf5sp -tail 20
+kubectl logs poi-deployment-676c87b946-jf5sp -tail 20
+kubectl logs poi-deployment-676c87b946-jf5sp -t 20
+kubectl logs poi-deployment-676c87b946-jf5sp 
+kubect get secret
+kubectl get secret
+kubectl apply -f secret.yaml 
+kubectl delete poi-deployment-676c87b946-jf5sp
+kubectl delete po poi-deployment-676c87b946-jf5sp
+kubectl get deployment
+kubectl get po
+kubectl port-forward poi-deployment-676c87b946-nff26 8080:80

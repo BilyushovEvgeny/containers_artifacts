@@ -68,5 +68,21 @@ kubectl get deployment
 kubectl get po
 kubectl port-forward poi-deployment-676c87b946-nff26 8080:80
 
+#challenge 4
+az aks get-credentials --name openhack --resource-group teamresources --admin
+
 # getting vnet subnet id for az aks create --vnet-subnet-id
 az network vnet subnet list --resource-group teamResources --vnet-name vnet
+
+#web dev
+az role assignment create --assignee f3e39972-ae2d-4e31-bf52-14844207149c --role "Azure Kubernetes Service Cluster User Role" --scope "/subscriptions/748641e6-eaf9-4a8e-8562-913deb6f5079/resourcegroups/teamResources/providers/Microsoft.ContainerService/managedClusters/OPENHACK"
+#api dev
+az role assignment create --assignee a3509ca9-d38b-4245-9d85-d4035d7a7daa --role "Azure Kubernetes Service Cluster User Role" --scope "/subscriptions/748641e6-eaf9-4a8e-8562-913deb6f5079/resourcegroups/teamResources/providers/Microsoft.ContainerService/managedClusters/OPENHACK"
+
+ kubectl exec -it trips-deployment-5bb856899b-gzn7f -n api -- ls
+ kubectl exec -it trips-deployment-5bb856899b-gzn7f -n api -- ls /etc
+ kubectl exec -it trips-deployment-5bb856899b-gzn7f -n api -- cat /etc/resolv.conf 
+
+kubectl delete rolebinding -n web web-user-access
+
+ kubectl exec -it poi-deployment-676c87b946-qzxvt -n api -- ping 20.107.168.54

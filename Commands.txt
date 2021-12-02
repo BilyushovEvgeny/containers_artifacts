@@ -123,3 +123,9 @@ kubectl -n api exec -it poi-deployment-5b474755ff-rq6xl -- sh
 cat /mnt/secrets-store/SQL_USER
 
 kubectl logs poi-deployment-5b474755ff-rq6xl -n api
+
+#list secrets from api namespace in yaml
+kubectl get secrets environmentsecrets -n api -o yaml
+
+# default rotation interval is 2 minutes
+az aks update -g teamResources -n openhack --enable-secret-rotation

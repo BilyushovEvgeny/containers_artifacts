@@ -28,3 +28,6 @@ kubectl delete po poi-deployment-676c87b946-jf5sp
 kubectl get deployment
 kubectl get po
 kubectl port-forward poi-deployment-676c87b946-nff26 8080:80
+
+# getting vnet subnet id for az aks create --vnet-subnet-id
+az network vnet subnet list --resource-group teamResources --vnet-name vnet

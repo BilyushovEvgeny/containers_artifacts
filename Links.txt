@@ -21,3 +21,5 @@ https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about
 https://dapr.io/
 
 https://docs.microsoft.com/sr-cyrl-rs/azure/cloud-adoption-framework/scenarios/aks/enterprise-scale-landing-zone
+
+https://github.com/Azure/Aks-Construction

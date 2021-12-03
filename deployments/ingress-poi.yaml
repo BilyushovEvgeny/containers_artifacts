@@ -2,18 +2,57 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: openhack-ingress
-  namespace: api
+  namespace: web
   annotations:
-    kubernetes.io/ingress.class: openhack-ingres
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: "openhack-team1.northeurope.cloudapp.azure.com"
-    http:
+  - http:
       paths:
       - pathType: Prefix
-        path: "/api/poi"
+        path: /
+        backend:
+          service:
+            name: tripviewer-service
+            port:
+              number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openhack-ingress-api
+  namespace: api
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /api/poi
         backend:
           service:
             name: poi-service
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /api/trips
+        backend:
+          service:
+            name: trips-service
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /api/user
+        backend:
+          service:
+            name: userprofile-service
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /api/user-java
+        backend:
+          service:
+            name: user-java-service
             port:
               number: 80

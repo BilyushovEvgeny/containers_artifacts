@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openhack-ingress
+  namespace: api
+  annotations:
+    kubernetes.io/ingress.class: openhack-ingres
+spec:
+  rules:
+  - host: "openhack-team1.northeurope.cloudapp.azure.com"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/api/poi"
+        backend:
+          service:
+            name: poi-service
+            port:
+              number: 80

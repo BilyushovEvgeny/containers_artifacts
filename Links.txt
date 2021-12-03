@@ -19,3 +19,5 @@ https://release-v0-11.docs.openservicemesh.io/docs/getting_started/quickstart/ma
 https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about
 
 https://dapr.io/
+
+https://docs.microsoft.com/sr-cyrl-rs/azure/cloud-adoption-framework/scenarios/aks/enterprise-scale-landing-zone

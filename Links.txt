@@ -11,3 +11,11 @@ https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about
 https://docs.microsoft.com/en-us/azure/azure-sql/database/vnet-service-endpoint-rule-overview
 
 https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity#run-an-application-with-multiple-identities
+
+https://docs.microsoft.com/en-us/security/benchmark/azure/baselines/aks-security-baseline
+
+https://release-v0-11.docs.openservicemesh.io/docs/getting_started/quickstart/manual_demo/
+
+https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about
+
+https://dapr.io/

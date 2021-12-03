@@ -1,0 +1,31 @@
+kind: TrafficTarget
+apiVersion: access.smi-spec.io/v1alpha3
+metadata:
+  name: tripviewer-tt
+  namespace: api
+spec:
+  destination:
+    kind: ServiceAccount
+    name: trips-service
+    namespace: api
+  rules:
+  - kind: HTTPRouteGroup
+    name: bookstore-service-routes
+    matches:
+    - buy-a-book
+  sources:
+  - kind: ServiceAccount
+    name: tripviewer-service
+    namespace: web
+---
+apiVersion: specs.smi-spec.io/v1alpha4
+kind: HTTPRouteGroup
+metadata:
+  name: trips-routes
+  namespace: api
+spec:
+  matches:
+  - name: buy-a-book
+    pathRegex: "*"
+    methods:
+    - GET

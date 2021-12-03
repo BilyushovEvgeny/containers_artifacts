@@ -138,5 +138,24 @@ helm upgrade openhack ingress-nginx/ingress-nginx --install  --namespace default
 
 
 
+---
+system=$(uname -s)
+release=v0.11.1
+curl -L https://github.com/openservicemesh/osm/releases/download/${release}/osm-${release}-${system}-amd64.tar.gz | tar -vxzf -
+cp ./${system}-amd64/osm /usr/local/bin
 
+osm install --set=OpenServiceMesh.enablePermissiveTrafficPolicy=true
+# OSM installed successfully in namespace [osm-system] with mesh name [osm]
+
+kubectl get meshconfig osm-mesh-config -n osm-system -o jsonpath='{.spec.traffic.enablePermissiveTrafficPolicyMode}{"\n"}'
+#true
+kubectl get meshconfig osm-mesh-config -n osm-system -o jsonpath='{.spec.traffic.enableEgress}{"\n"}'
+#false
+
+kubectl patch meshconfig osm-mesh-config -n osm-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":true}}}'  --type=merge
+kubectl patch meshconfig osm-mesh-config -n osm-system -p '{"spec":{"traffic":{"enableEgress":true}}}'  --type=merge
+
+
+
+kubectl patch meshconfig osm-mesh-config -n osm-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":false}}}'  --type=merge
 

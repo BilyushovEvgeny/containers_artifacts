@@ -1,13 +1,27 @@
 kind: Namespace
 apiVersion: v1
 metadata:
+  annotations:
+    openservicemesh.io/sidecar-injection: enabled
   name: web
   labels:
     name: web
+    openservicemesh.io/monitored-by: osm
 ---
 kind: Namespace
 apiVersion: v1
 metadata:
+  annotations:
+    openservicemesh.io/sidecar-injection: enabled
   name: api
   labels:
     name: api
+    openservicemesh.io/monitored-by: osm
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx
+  labels:
+    name: nginx
+    openservicemesh.io/monitored-by: osm

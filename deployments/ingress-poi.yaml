@@ -17,6 +17,23 @@ spec:
             port:
               number: 80
 ---
+kind: IngressBackend
+apiVersion: policy.openservicemesh.io/v1alpha1
+metadata:
+  name: openhack-ingress
+  namespace: web
+spec:
+  backends:
+  - name: tripviewer-service
+    port:
+      number: 80
+      protocol: http
+  sources:
+  - kind: Service
+    namespace: "nginx"
+    name: "openhack-ingress-nginx-controller"
+
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -56,3 +73,20 @@ spec:
             name: user-java-service
             port:
               number: 80
+
+---
+kind: IngressBackend
+apiVersion: policy.openservicemesh.io/v1alpha1
+metadata:
+  name: openhack-ingress-api
+  namespace: api
+spec:
+  backends:
+  - name: trips-service
+    port:
+      number: 80
+      protocol: http
+  sources:
+  - kind: Service
+    namespace: "nginx"
+    name: "openhack-ingress-nginx-controller"

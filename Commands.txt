@@ -129,3 +129,14 @@ kubectl get secrets environmentsecrets -n api -o yaml
 
 # default rotation interval is 2 minutes
 az aks update -g teamResources -n openhack --enable-secret-rotation
+
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx --force-update
+helm upgrade openhack ingress-nginx/ingress-nginx --install  --namespace default --values ./ingress/values.yaml
+
+
+
+
+
+
+

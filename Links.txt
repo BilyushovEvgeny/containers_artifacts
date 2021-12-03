@@ -1,0 +1,13 @@
+https://docs.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security#secure-container-access-to-resources
+
+https://docs.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges
+
+https://docs.microsoft.com/en-us/azure/aks/use-network-policies
+
+https://docs.microsoft.com/en-us/azure/aks/limit-egress-traffic#restrict-egress-traffic-using-azure-firewall
+
+https://docs.microsoft.com/en-us/azure/aks/open-service-mesh-about
+
+https://docs.microsoft.com/en-us/azure/azure-sql/database/vnet-service-endpoint-rule-overview
+
+https://docs.microsoft.com/en-us/azure/aks/use-azure-ad-pod-identity#run-an-application-with-multiple-identities
